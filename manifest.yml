@@ -1,0 +1,13 @@
+---
+applications:
+  - name: mcp-github-server
+    memory: 256M
+    disk_quota: 256M
+    instances: 1
+    stack: cflinuxfs4
+    buildpack: python_buildpack
+    command: gunicorn --worker-class=gevent --workers=2 --bind=0.0.0.0:$PORT server:app
+    health-check-type: http
+    health-check-http-endpoint: /api/status
+    env:
+      GITHUB_TOKEN: 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
